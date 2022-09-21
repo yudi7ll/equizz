@@ -1,0 +1,5 @@
+{
+  "eslint.runtime": "../node_modules/.bin/eslint",
+  "eslint.format.enable": false,
+  "eslint.quiet": true
+}
