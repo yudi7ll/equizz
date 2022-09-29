@@ -21,6 +21,7 @@
         "singleQuote": true,
         "semi": false
       }
-    ]
+    ],
+    "react/display-name": "off"
   }
 }
