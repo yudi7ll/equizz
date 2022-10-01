@@ -52,10 +52,12 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
         <div
           className={clsx(
             'ml-4 flex items-center text-gray-500',
-            changed ? 'hidden' : ''
+            changed ? 'hidden' : null
           )}
         >
-          <Icon size={14} />
+          <span>
+            <Icon size={15} />
+          </span>
           <span className="ml-2 text-sm">{Label}</span>
         </div>
       </div>
