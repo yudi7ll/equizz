@@ -1,4 +1,4 @@
-import React, { FormEvent, useState } from 'react'
+import React, { useState } from 'react'
 import Input from '../components/Input'
 import Button from '../components/Button'
 import BaseButton from '../components/Button/BaseButton'
@@ -22,28 +22,16 @@ interface FormValues {
 
 const Register = () => {
   const [isLoading, setIsLoading] = useState(false)
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [password2, setPassword2] = useState('')
-
   const { handleSubmit, register } = useForm<FormValues>()
   const onSubmit = handleSubmit(async (data) => {
-    console.log(data)
     // TODO:
-  })
-
-  const submitHandler = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-
+    console.log(data)
     setIsLoading(true)
 
-    // TODO:
-    // Fake Loading
     setTimeout(() => {
       setIsLoading(false)
     }, 1000)
-  }
+  })
 
   return (
     <div className="flex items-center justify-center mt-12">
@@ -113,10 +101,10 @@ const Register = () => {
 
         <div className="mt-12 text-center">
           <small className="text-gray-400">
-            Not a member?&nbsp;
-            <Link href="/register">
+            Already have an account?&nbsp;
+            <Link href="/login">
               <a className="text-indigo-500 hover:text-indigo-700 hover:underline transition-all whitespace-nowrap">
-                Sign up now
+                Login
               </a>
             </Link>
           </small>

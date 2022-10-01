@@ -83,7 +83,7 @@ const Login = () => {
         <div className="mt-12 text-center">
           <small className="text-gray-400">
             Not a member?&nbsp;
-            <Link href="/register">
+            <Link href="/login">
               <a className="text-indigo-500 hover:text-indigo-700 hover:underline transition-all whitespace-nowrap">
                 Sign up now
               </a>
