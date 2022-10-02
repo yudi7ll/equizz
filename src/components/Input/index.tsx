@@ -37,7 +37,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
         onChange={changeHandler}
         id={id}
         className={clsx(
-          'w-full py-2 px-4 bg-gray-200 text-gray-800 rounded-sm outline-none hover:bg-gray-300 focus:bg-gray-300 focus:ring focus:ring-indigo-300 transition-all',
+          'w-full rounded-sm bg-gray-200 py-2 px-4 text-gray-800 outline-none transition-all hover:bg-gray-300 focus:bg-gray-300 focus:ring focus:ring-indigo-300',
           props.className
         )}
       />
@@ -48,7 +48,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
         )}
         errors={props?.errors ?? {}}
       />
-      <div className="absolute left-0 top-1/2 transform -translate-y-1/2 pointer-events-none">
+      <div className="pointer-events-none absolute left-0 top-1/2 -translate-y-1/2">
         <div
           className={clsx(
             'ml-4 flex items-center text-gray-500',

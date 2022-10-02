@@ -34,9 +34,9 @@ const Register = () => {
   })
 
   return (
-    <div className="flex items-center justify-center mt-12">
-      <div className="bg-white rounded-sm px-5 py-4 sm:px-10 sm:pt-10 sm:pb-5 shadow inline-block">
-        <h2 className="text-center font-bold text-2xl">Register</h2>
+    <div className="mt-12 flex items-center justify-center">
+      <div className="inline-block rounded-sm bg-white px-5 py-4 shadow sm:px-10 sm:pt-10 sm:pb-5">
+        <h2 className="text-center text-2xl font-bold">Register</h2>
         <form className="mt-6" onSubmit={onSubmit}>
           <div>
             <Input
@@ -81,14 +81,14 @@ const Register = () => {
           <small className="block text-center text-gray-400">
             Or login with
           </small>
-          <div className="flex items-center gap-x-1 sm:gap-x-4 flex-wrap mt-3">
+          <div className="mt-3 flex flex-wrap items-center gap-x-1 sm:gap-x-4">
             {[
               { Icon: FaFacebook, text: 'Facebook' },
               { Icon: FaGoogle, text: 'Google' },
             ].map(({ Icon, text }) => (
               <BaseButton
                 key={text}
-                className="mt-3 w-full sm:w-auto text-indigo-800 border border-indigo-500 bg-transparent hover:bg-indigo-500 hover:text-white focus:ring focus:ring-indigo-300"
+                className="mt-3 w-full border border-indigo-500 bg-transparent text-indigo-800 hover:bg-indigo-500 hover:text-white focus:ring focus:ring-indigo-300 sm:w-auto"
               >
                 <div className="flex items-center gap-x-1">
                   <Icon />
@@ -103,7 +103,7 @@ const Register = () => {
           <small className="text-gray-400">
             Already have an account?&nbsp;
             <Link href="/login">
-              <a className="text-indigo-500 hover:text-indigo-700 hover:underline transition-all whitespace-nowrap">
+              <a className="whitespace-nowrap text-indigo-500 transition-all hover:text-indigo-700 hover:underline">
                 Login
               </a>
             </Link>
