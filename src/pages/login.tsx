@@ -5,49 +5,68 @@ import BaseButton from '../components/Button/BaseButton'
 import Link from 'next/link'
 import { FaEnvelope, FaFacebook, FaGoogle, FaLock } from 'react-icons/fa'
 import Spinner from '../components/Spinner'
+import { client } from '../lib/apollo'
+import { gql } from '@apollo/client'
+import { useForm } from 'react-hook-form'
+import { useAuth } from '../hooks/useAuth'
+
+interface FormValues {
+  username: string
+  password: string
+}
 
 const Login = () => {
   const [isLoading, setIsLoading] = useState(false)
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const { register, handleSubmit } = useForm<FormValues>()
+  const auth = useAuth()
 
-  const submitHandler = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
+  const submitHandler = handleSubmit(async ({ username, password }) => {
+    try {
+      setIsLoading(true)
+      console.log(username, password)
 
-    setIsLoading(true)
+      const result = await client.query<{ signIn?: { token?: string } }>({
+        query: LOGIN,
+        variables: {
+          user: {
+            username,
+            password,
+          },
+        },
+      })
+      console.log(result)
 
-    // TODO:
-    // Fake Loading
-    setTimeout(() => {
+      auth.setUser({
+        isLoggedIn: true,
+        username,
+        token: result.data.signIn?.token,
+      })
+    } catch (e) {
+      console.error(e)
+    } finally {
       setIsLoading(false)
-    }, 1000)
-  }
+    }
+  })
+
+  console.log('user', auth.user)
 
   return (
     <div className="mt-12 flex items-center justify-center">
       <div className="inline-block rounded-sm bg-white px-5 py-4 shadow sm:px-10 sm:pt-10 sm:pb-5">
         <h2 className="text-center text-2xl font-bold">LOGIN</h2>
-        <form
-          className="mt-6"
-          action="#"
-          method="post"
-          onSubmit={submitHandler}
-        >
+        <form className="mt-6" onSubmit={submitHandler}>
           <div>
             <Input
-              type="email"
-              defaultValue={email}
-              onChange={(e) => setEmail(e.currentTarget.value)}
+              {...register('username')}
               autoFocus
               Icon={FaEnvelope}
-              Label="Email"
+              Label="Username"
             />
           </div>
           <div className="mt-4">
             <Input
-              type="password"
-              defaultValue={password}
-              onChange={(e) => setPassword(e.currentTarget.value)}
+              {...register('password')}
+              type={'password'}
               Icon={FaLock}
               Label="Password"
             />
@@ -94,5 +113,13 @@ const Login = () => {
     </div>
   )
 }
+
+const LOGIN = gql`
+  query signIn($user: UserLoginInput!) {
+    signIn(user: $user) {
+      token
+    }
+  }
+`
 
 export default Login
