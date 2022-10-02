@@ -1,4 +1,4 @@
-import { MouseEvent } from 'react'
+import { memo, MouseEvent } from 'react'
 import { FaSearch } from 'react-icons/fa'
 import { RiMenu3Fill } from 'react-icons/ri'
 import Input from '../Input'
@@ -32,4 +32,4 @@ const Header = () => {
   )
 }
 
-export default Header
+export default memo(Header)
